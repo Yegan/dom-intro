@@ -12,7 +12,6 @@ var billStringElement =document.querySelector(".billString");
 function calculateBtnClicked(){
     // get the string entered in the textArea
     var billString = billStringElement.value;
-    //split the string
     var billItems = billString.split(",");
     // a variable for the total phone bill.
     var billTotal = 0;
@@ -27,9 +26,18 @@ function calculateBtnClicked(){
         }
     }
 
+    if (billTotal > 30){
+        // adding the danger class will make the text red
+        billTotalElement.classList.add("danger");
+    }
+    else if (billTotal > 20){
+        billTotalElement.classList.add("warning");
+    }
+
+
     //round to two decimals
     var roundedBillTotal = billTotal.toFixed(2);
     billTotalElement.innerHTML = roundedBillTotal;
-}
+ }
 //link the function to a click event on the calculate button
 calculate.addEventListener('click', calculateBtnClicked);
