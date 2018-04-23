@@ -10,18 +10,27 @@ var billStringElement =document.querySelector(".billString");
 //  * check if it is a call or an sms and add the right amount to the overall total
 //  * once done looping over all the entries - display the total onto the screen in the billTotal element
 function calculateBtnClicked(){
-    // get the string entered in the textArea
-    var billString = billStringElement.value;
+      // get the string entered in the textArea
+    var billString = billStringElement.value
+    console.log(billString)
     var billItems = billString.split(",");
+    console.log(billItems)
     // a variable for the total phone bill.
     var billTotal = 0;
     //loop over all the bill items
     for (var i=0;i<billItems.length;i++){
+      console.log(billItems)
         var billItem = billItems[i].trim();
+        console.log(billItem)
+        //billItem is a string
         if (billItem === "call"){
+          //billTotal is a number
             billTotal += 2.75;
         }
-        else if (billItem === "sms"){
+
+    //    console.log(billTotal)
+
+       else if (billItem === "sms"){
             billTotal += 0.75;
         }
     }
