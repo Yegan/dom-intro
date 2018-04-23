@@ -43,6 +43,10 @@ function calculateBtnClicked(){
         billTotalElement.classList.add("warning");
     }
 
+    else {
+      billTotalElement.style.color = "inherit"
+    }
+
 
     //round to two decimals
     var roundedBillTotal = billTotal.toFixed(2);

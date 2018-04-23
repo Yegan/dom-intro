@@ -51,6 +51,9 @@ function billFunc() {
    if (billTotalTotal >= costOfCritical ) {
      return;
    }
+   else {
+     totalElementBill.classList.remove("danger")
+   }
 
   var checkedRadioButton = document.querySelector("input[name='billItemTypeWithSettings']:checked");
   if (checkedRadioButton) {
