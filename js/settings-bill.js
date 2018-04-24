@@ -77,6 +77,10 @@ function billFunc() {
     totalElementBill.classList.add("warning")
   }
 
+  if(billTotalTotal <= costOfWarning){
+    totalElementBill.classList.remove("warning")
+  }
+
   if (billTotalTotal >= costOfCritical) {
     totalElementBill.classList.add("danger")
   }
