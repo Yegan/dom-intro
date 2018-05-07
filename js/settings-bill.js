@@ -17,82 +17,53 @@ var criticalCostElement = document.querySelector(".criticalCostSetting")
 // references for Setting Bill Button
 var settingsBillBtn = document.querySelector(".updateSettingsBtn")
 
-//Global variables for Bill function
-var billCallTotal = 0;
-var billSmsTotal = 0;
-var billTotalTotal = 0;
+var settingBillFac = SettingsBillFactory();
 
 
-//Global variables for Settings function
-var settingsCallTotal = 0;
-var costSettingSMS = 0;
-var costSettingCall = 0;
-var costOfWarning = 0;
-var costOfCritical = 0;
-
-//function for Settings
-function settingsFunc() {
-
-  var callCost = callCostElement.value;
-  var smsCost = smsCostElement.value;
-  costSettingSMS = parseFloat(smsCost);
-  costSettingCall = parseFloat(callCost);
-  var warningCost = warningCostElement.value;
-  costOfWarning = parseFloat(warningCost);
-  var criticalCost = criticalCostElement.value;
-  costOfCritical = parseFloat(criticalCost);
-
+function settings() {
+  settingBillFac.costOfCall(callCostElement.value)
+  settingBillFac.costOfSMS(smsCostElement.value)
+  settingBillFac.costWarning(warningCostElement.value)
+  settingBillFac.costCritical(criticalCostElement.value)
 }
 
-//function for Bill Total
 function billFunc() {
-  // check if current total is greater or equal critical level and if so just return - then do nothing
 
-   if (billTotalTotal >= costOfCritical ) {
-     return;
-   }
-   else {
-     totalElementBill.classList.remove("danger")
-   }
+  var final = settingBillFac.totalCS();
+
+  if (final >= settingBillFac.criticalCost()) {
+    totalElementBill.classList.add("danger");
+    return;
+  }
+
+  totalElementBill.classList.remove("danger")
+  totalElementBill.classList.remove("warning")
+
 
   var checkedRadioButton = document.querySelector("input[name='billItemTypeWithSettings']:checked");
   if (checkedRadioButton) {
-    var radioTotal = checkedRadioButton.value
-  }
-  if (radioTotal === 'call') {
-    billCallTotal += costSettingCall;
+    var billItem = checkedRadioButton.value
   }
 
-  if (radioTotal === 'sms') {
-    billSmsTotal += costSettingSMS;
-  }
+  settingBillFac.calculateBill(billItem);
 
 
-  smsTotalDisplay.innerHTML = billSmsTotal.toFixed(2);
-  callTotalDisplay.innerHTML = billCallTotal.toFixed(2);
-  billTotalTotal = billCallTotal + billSmsTotal;
-  totalElementBill.innerHTML = billTotalTotal.toFixed(2);
-
-  if (billTotalTotal >= costOfWarning) {
+  if (final >= settingBillFac.warningCost()) {
     totalElementBill.classList.add("warning")
   }
 
-  if(billTotalTotal <= costOfWarning){
-    totalElementBill.classList.remove("warning")
-  }
 
-  if (billTotalTotal >= costOfCritical) {
+  if (final >= settingBillFac.criticalCost()) {
     totalElementBill.classList.add("danger")
   }
 
-
-
-
+  callTotalDisplay.innerHTML = settingBillFac.costCall().toFixed(2);
+  smsTotalDisplay.innerHTML = settingBillFac.costSMS().toFixed(2);
+  totalElementBill.innerHTML = settingBillFac.totalCS().toFixed(2);
 }
 
-
 // eventListeners for Settings click
-settingsBillBtn.addEventListener("click", settingsFunc);
+settingsBillBtn.addEventListener("click", settings);
 
 //eventListeners for Bill click
 billTotalBtn.addEventListener("click", billFunc);

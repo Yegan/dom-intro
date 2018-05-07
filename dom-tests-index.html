@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TDD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js" charset="utf-8"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.min.js"></script>
+  </head>
+  <body>
+    <div id="mocha"></div>
+        <script>
+            mocha.setup('bdd');
+            var assert = chai.assert;
+        </script>
+
+        <!-- <script src="test/calculate-bill-test.js"></script> -->
+        <!-- <script src="js/calculate-bill.js"></script> -->
+
+        <script src="test/calculate-bill-test.js"></script>
+        <script src="js/calculateBillFactory.js"></script>
+
+      <script src="test/textbill-test.js"></script>
+      <script src="js/textBillFactory.js"></script>
+
+      <script src="test/radioBill-test.js"></script>
+      <script src="js/radioBillFactory.js"></script>
+
+
+      <script src="test/settings-bill-test.js"></script>
+      <script src="js/settingsBillFactory.js"></script>
+
+      <script src=""></script>
+      <script src=""></script>
+
+      <script src=""></script>
+      <script src=""></script>
+
+      <script src=""></script>
+      <script src=""></script>
+
+      <script src=""></script>
+      <script src=""></script>
+
+      <script src=""></script>
+      <script src=""></script>
+
+        <script>
+            mocha.checkLeaks();
+            mocha.run();
+        </script>
+  </body>
+</html>
