@@ -1,6 +1,6 @@
-describe("The function should add a bill item type of call or sms", function() {
+describe("The function Text Bill", function() {
 
-  it("The function should return the total tally for sms and call", function() {
+  it("The function should add a bill item type of call or sms", function() {
 
     var thisGotMadeByTheFactoryFunction = TextBillFactory();
 
@@ -11,7 +11,7 @@ describe("The function should add a bill item type of call or sms", function() {
 
   });
 
-  it("The function should return the total tally for sms and call", function() {
+  it("The function should add a bill item type of call or sms", function() {
 
     var thisGotMadeByTheFactoryFunction = TextBillFactory();
 

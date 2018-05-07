@@ -1,5 +1,5 @@
-describe('The function should take in a call or sms value and tally this total accordingly', function(){
-  it("The one function is going to store values and the second will tally these amounts stored together", function(){
+describe('The function Settings Bill', function(){
+  it("'The function should take in a call or sms value and tally this total accordingly", function(){
 
 
     var factorySettings = SettingsBillFactory();
@@ -10,13 +10,13 @@ describe('The function should take in a call or sms value and tally this total a
     assert.equal(factorySettings.totalCS(),5);
   });
 
-  it("The one function is going to store values and the second will tally these amounts stored together", function(){
+  it("'The function should take in a call or sms value and tally this total accordingly", function(){
 
 
     var factorySettings = SettingsBillFactory();
     factorySettings.costOfCall(10)
-    factorySettings.costWarning(10)
-    factorySettings.costCritical(15)
+    factorySettings.costWarning(20)
+    factorySettings.costCritical(30)
     factorySettings.calculateBill('call');
     assert.equal(factorySettings.totalCS(),10);
   });
