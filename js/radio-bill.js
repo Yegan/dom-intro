@@ -18,7 +18,7 @@ function radioTotal(){
       var billItemType = checkedRadioBtn.value;
     }
 
-    radioFactory.calculate(billItemType);
+    radioFactory.billCalculate(billItemType);
 
 
    callTotalTwo2.innerHTML = radioFactory.call().toFixed(2);

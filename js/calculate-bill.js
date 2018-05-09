@@ -10,6 +10,8 @@ function displayElements() {
   var roundedBillTotal = calculateBtnClicked(billStringElement.value)
   billTotalElement.innerHTML = roundedBillTotal;
 
+  console.log(roundedBillTotal)
+
 
   if (roundedBillTotal > 30) {
     // adding the danger class will make the text red

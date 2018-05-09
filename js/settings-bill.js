@@ -19,17 +19,22 @@ var settingsBillBtn = document.querySelector(".updateSettingsBtn")
 
 var settingBillFac = SettingsBillFactory();
 
-
 function settings() {
+
   settingBillFac.costOfCall(callCostElement.value)
   settingBillFac.costOfSMS(smsCostElement.value)
   settingBillFac.costWarning(warningCostElement.value)
   settingBillFac.costCritical(criticalCostElement.value)
-}
 
-function billFunc() {
+  }
+
+function billFunc(){
 
   var final = settingBillFac.totalCS();
+  var checkedRadioButton = document.querySelector("input[name='billItemTypeWithSettings']:checked");
+  if (checkedRadioButton) {
+    var billItem = checkedRadioButton.value
+  }
 
   if (final >= settingBillFac.criticalCost()) {
     totalElementBill.classList.add("danger");
@@ -38,12 +43,6 @@ function billFunc() {
 
   totalElementBill.classList.remove("danger")
   totalElementBill.classList.remove("warning")
-
-
-  var checkedRadioButton = document.querySelector("input[name='billItemTypeWithSettings']:checked");
-  if (checkedRadioButton) {
-    var billItem = checkedRadioButton.value
-  }
 
   settingBillFac.calculateBill(billItem);
 
@@ -60,7 +59,7 @@ function billFunc() {
   callTotalDisplay.innerHTML = settingBillFac.costCall().toFixed(2);
   smsTotalDisplay.innerHTML = settingBillFac.costSMS().toFixed(2);
   totalElementBill.innerHTML = settingBillFac.totalCS().toFixed(2);
-}
+ }
 
 // eventListeners for Settings click
 settingsBillBtn.addEventListener("click", settings);

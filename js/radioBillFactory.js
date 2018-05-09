@@ -1,36 +1,36 @@
-function RadioBillFactory() {
+function RadioBillFactory(){
+  var callsTotal = 0;
+  var smsTotal = 0;
 
-  var totalCall = 0;
-  var totalSms = 0;
+  function textBillTotal(billType) {
 
-  function radioTotal(value) {
-
-      if (value === "call") {
-      totalCall += 2.75
-    } else if (value === "sms") {
-      totalSms += 0.75
+    var billTypeEntered = billType;
+    if (billTypeEntered === "call") {
+      callsTotal += 2.75
+    } else if (billTypeEntered === "sms") {
+      smsTotal += 0.75;
     }
 
+
   }
 
-  function callReturn() {
-    return totalCall;
+  function callTotalReturn() {
+    return callsTotal;
   }
 
-  function smsReturn() {
-    return totalSms;
+  function smsTotalReturn() {
+    return smsTotal;
   }
 
-  function totalReturn() {
-    var total = totalCall + totalSms;
-    return total;
+  function totalTotal() {
+    var total = callsTotal + smsTotal;
+    return total
   }
-
   return {
-    calculate: radioTotal,
-    call: callReturn,
-    sms: smsReturn,
-    total: totalReturn,
+    billCalculate: textBillTotal,
+    call: callTotalReturn,
+    sms: smsTotalReturn,
+    total: totalTotal,
   }
 
 }
