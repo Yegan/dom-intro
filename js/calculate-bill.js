@@ -9,21 +9,15 @@ function displayElements() {
 
   var roundedBillTotal = calculateBtnClicked(billStringElement.value)
   billTotalElement.innerHTML = roundedBillTotal;
-
-  console.log(roundedBillTotal)
-
+  billTotalElement.classList.remove("warning");
+  billTotalElement.classList.remove("danger");
 
   if (roundedBillTotal > 30) {
     // adding the danger class will make the text red
     billTotalElement.classList.add("danger");
   } else if (roundedBillTotal > 20) {
     billTotalElement.classList.add("warning");
-  } else {
-    billTotalElement.style.color = "inherit"
   }
-
-
-
 }
 
 //link the function to a click event on the calculate button

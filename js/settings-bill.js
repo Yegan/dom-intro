@@ -26,40 +26,32 @@ function settings() {
   settingBillFac.costWarning(warningCostElement.value)
   settingBillFac.costCritical(criticalCostElement.value)
 
+}
+
+function billFunc() {
+
+  if (settingBillFac.totalCS() < settingBillFac.criticalCost()) {
+    var checkedRadioButton = document.querySelector("input[name='billItemTypeWithSettings']:checked");
+    if (checkedRadioButton) {
+      var billItem = checkedRadioButton.value
+      settingBillFac.calculateBill(billItem);
+      callTotalDisplay.innerHTML = settingBillFac.costCall().toFixed(2);
+      smsTotalDisplay.innerHTML = settingBillFac.costSMS().toFixed(2);
+      totalElementBill.innerHTML = settingBillFac.totalCS().toFixed(2);
+
+      if (settingBillFac.totalCS() < settingBillFac.warningCost()) {
+        totalElementBill.classList.remove("warning")
+        totalElementBill.classList.remove("danger")
+      } else if (settingBillFac.totalCS() >= settingBillFac.warningCost() && settingBillFac.totalCS() < settingBillFac.criticalCost()) {
+        totalElementBill.classList.add("warning")
+        totalElementBill.classList.remove("danger")
+      } else if (settingBillFac.totalCS() >= settingBillFac.criticalCost()) {
+        totalElementBill.classList.add("danger")
+        totalElementBill.classList.remove("warning")
+      }
+    }
   }
-
-function billFunc(){
-
-  var final = settingBillFac.totalCS();
-  var checkedRadioButton = document.querySelector("input[name='billItemTypeWithSettings']:checked");
-  if (checkedRadioButton) {
-    var billItem = checkedRadioButton.value
-  }
-
-  if (final >= settingBillFac.criticalCost()) {
-    totalElementBill.classList.add("danger");
-    return;
-  }
-
-  totalElementBill.classList.remove("danger")
-  totalElementBill.classList.remove("warning")
-
-  settingBillFac.calculateBill(billItem);
-
-
-  if (final >= settingBillFac.warningCost()) {
-    totalElementBill.classList.add("warning")
-  }
-
-
-  if (final >= settingBillFac.criticalCost()) {
-    totalElementBill.classList.add("danger")
-  }
-
-  callTotalDisplay.innerHTML = settingBillFac.costCall().toFixed(2);
-  smsTotalDisplay.innerHTML = settingBillFac.costSMS().toFixed(2);
-  totalElementBill.innerHTML = settingBillFac.totalCS().toFixed(2);
- }
+}
 
 // eventListeners for Settings click
 settingsBillBtn.addEventListener("click", settings);

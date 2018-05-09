@@ -21,7 +21,7 @@ function SettingsBillFactory(){
   function costOfSMS(smsCost){
     costSettingSMS = parseFloat(smsCost);
   }
-
+  
   function costSMS(){
     return billSmsTotal;
   }
@@ -42,26 +42,25 @@ function SettingsBillFactory(){
   }
 
   function totalCS(){
-    billTotalTotal= billSmsTotal+billCallTotal;
-     return billTotalTotal;
+    return billTotalTotal
   }
 
 
 
 
   //function for Bill Total
-  function calculateBill(checkedRadioButton){
-    var radioTotal = checkedRadioButton
+  function calculateBill(checkedRadioButton) {
+  var radioTotal = checkedRadioButton
 
-    if (radioTotal === 'call') {
-      billCallTotal += costSettingCall;
-    }
+  if (radioTotal === 'call') {
+    billCallTotal += costSettingCall;
+  } else if (radioTotal === 'sms') {
+    billSmsTotal += costSettingSMS;
+  }
+  billTotalTotal = billSmsTotal + billCallTotal;
+  return billTotalTotal;
 
-    else if (radioTotal === 'sms') {
-      billSmsTotal += costSettingSMS;
-    }
-
-    }
+}
 
     return{
       costOfCall,

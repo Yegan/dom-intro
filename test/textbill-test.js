@@ -11,7 +11,7 @@ describe("The function Text Bill", function() {
 
   });
 
-  it("The function should add a bill item type of call or sms", function() {
+  it("The function is checking the value of sms and giving a total", function() {
 
     var thisGotMadeByTheFactoryFunction = TextBillFactory();
 
